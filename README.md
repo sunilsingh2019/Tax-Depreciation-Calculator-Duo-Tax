@@ -10,6 +10,12 @@ A web application for calculating tax depreciation for properties in Australia. 
 - View detailed yearly breakdown of expected depreciation
 - Interactive charts for visualizing depreciation over time
 
+## Demo Video
+
+Check out this demonstration video of the Tax Depreciation Calculator in action:
+
+[![Tax Depreciation Calculator Demo](https://img.youtube.com/vi/rZA07Lgw77U/0.jpg)](https://youtu.be/rZA07Lgw77U)
+
 ## Tech Stack
 
 - **Backend**: FastAPI, Python 3.9
