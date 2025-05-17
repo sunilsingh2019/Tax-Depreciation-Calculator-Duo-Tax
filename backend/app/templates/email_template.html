@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <title>Your Tax Depreciation Report</title>
+        <style>
+            body { font-family: 'Inter', Arial, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 0; }
+            .container { max-width: 600px; margin: 0 auto; padding: 0; }
+            .header { background-color: #e87722; color: white; padding: 30px 20px; text-align: center; }
+            .content { padding: 30px 20px; }
+            .footer { text-align: center; margin-top: 20px; font-size: 12px; color: #666; background-color: #f5f7fa; padding: 20px; }
+            .highlight { color: #e87722; font-weight: bold; }
+            h1, h2, h3 { color: #1a6cc3; margin-top: 0; }
+            .summary-box { background-color: #f5f7fa; padding: 20px; border-radius: 5px; margin: 20px 0; border-left: 4px solid #e87722; }
+            .summary-item { margin-bottom: 15px; }
+            .btn { display: inline-block; background-color: #e87722; color: white; padding: 12px 25px; text-decoration: none; border-radius: 4px; font-weight: bold; margin-top: 15px; }
+            .btn:hover { background-color: #d16616; }
+            a { color: #1a6cc3; text-decoration: underline; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h1 style="color: white;">Your Tax Depreciation Report</h1>
+            </div>
+            <div class="content">
+                <p>Hello {{ name }},</p>
+                
+                <p>Thank you for using <span class="highlight">Duo Tax's Depreciation Calculator</span>. Attached is your complete tax depreciation schedule for your investment property.</p>
+                
+                <div class="summary-box">
+                    <h3>Report Summary:</h3>
+                    <div class="summary-item">
+                        <strong>Property Type:</strong> 
+                        {% if report.property_type == "residential" %}
+                            Residential Property
+                        {% elif report.property_type == "commercial" %}
+                            Commercial Property
+                        {% elif report.property_type == "industrial" %}
+                            Industrial Property
+                        {% else %}
+                            {{ report.property_type }}
+                        {% endif %}
+                    </div>
+                    <div class="summary-item">
+                        <strong>First Year Deduction:</strong> <span class="highlight">${{ "{:,.2f}".format(report.first_year_depreciation) }}</span>
+                    </div>
+                    <div class="summary-item">
+                        <strong>First 5 Years:</strong> <span class="highlight">${{ "{:,.2f}".format(report.five_year_depreciation) }}</span>
+                    </div>
+                    <div class="summary-item">
+                        <strong>Total Depreciable Amount:</strong> <span class="highlight">${{ "{:,.2f}".format(report.total_depreciable_amount) }}</span>
+                    </div>
+                </div>
+                
+                <p>For a comprehensive tax depreciation schedule prepared by our quantity surveyors, please contact us at <a href="mailto:info@duotax.com.au">info@duotax.com.au</a>.</p>
+                
+                <a href="https://duotax.com.au" class="btn">Visit Our Website</a>
+                
+                <p>Best regards,<br>The Duo Tax Team</p>
+            </div>
+            <div class="footer">
+                <p>&copy; {{ current_year }} Duo Tax Depreciation. All rights reserved.</p>
+                <p>This email was sent on {{ formatted_date }}</p>
+                <p>
+                    <a href="https://duotax.com.au/privacy">Privacy Policy</a> | 
+                    <a href="https://duotax.com.au/terms">Terms of Service</a>
+                </p>
+            </div>
+        </div>
+    </body>
+    </html>
+    

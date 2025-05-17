@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="300" height="200" viewBox="0 0 300 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Document/certificate background -->
+  <rect x="40" y="30" width="220" height="140" rx="8" fill="#F9FAFB" stroke="#D1D5DB" stroke-width="2"/>
+  
+  <!-- ATO logo/shield -->
+  <path d="M150 45C177.614 45 200 67.3858 200 95C200 122.614 177.614 145 150 145C122.386 145 100 122.614 100 95C100 67.3858 122.386 45 150 45Z" fill="#F3F4F6" stroke="#4F46E5" stroke-width="3"/>
+  
+  <!-- Checkmark in shield -->
+  <path d="M130 95L145 110L170 80" stroke="#4F46E5" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Text lines representing certification -->
+  <rect x="70" y="160" width="160" height="4" rx="2" fill="#D1D5DB"/>
+  <rect x="70" y="170" width="120" height="4" rx="2" fill="#D1D5DB"/>
+  
+  <!-- "ATO Compliant" text -->
+  <text x="150" y="180" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#374151" text-anchor="middle">ATO Compliant</text>
+  
+  <!-- Decorative lines -->
+  <line x1="60" y1="65" x2="60" y2="135" stroke="#4F46E5" stroke-width="3" stroke-linecap="round"/>
+  <line x1="240" y1="65" x2="240" y2="135" stroke="#4F46E5" stroke-width="3" stroke-linecap="round"/>
+  
+  <!-- Small decorative dots -->
+  <circle cx="60" cy="65" r="3" fill="#4F46E5"/>
+  <circle cx="60" cy="135" r="3" fill="#4F46E5"/>
+  <circle cx="240" cy="65" r="3" fill="#4F46E5"/>
+  <circle cx="240" cy="135" r="3" fill="#4F46E5"/>
+</svg> 

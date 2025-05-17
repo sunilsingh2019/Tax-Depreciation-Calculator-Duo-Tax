@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <title>Tax Depreciation Report</title>
+        <style>
+            @page { size: A4; margin: 2cm; }
+            body { font-family: 'Inter', Arial, sans-serif; line-height: 1.6; color: #000; }
+            .container { max-width: 100%; margin: 0 auto; }
+            .header { text-align: center; margin-bottom: 30px; border-bottom: 1px solid #000; padding-bottom: 20px; }
+            .logo { max-width: 180px; height: auto; margin: 0 auto; display: block; }
+            h1 { color: #000; margin-top: 20px; margin-bottom: 10px; }
+            h2 { color: #000; border-bottom: 2px solid #000; padding-bottom: 10px; margin-top: 30px; }
+            table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+            table, th, td { border: 1px solid #000; }
+            th, td { padding: 12px; text-align: left; }
+            th { background-color: #f3f4f6; color: #000; font-weight: bold; }
+            tr:nth-child(even) { background-color: #f9fafb; }
+            .highlight { color: #000; font-weight: bold; }
+            .footer { text-align: center; margin-top: 40px; font-size: 12px; color: #000; border-top: 1px solid #000; padding-top: 20px; }
+            .summary-box { background-color: #f5f7fa; padding: 20px; border-radius: 5px; margin: 20px 0; border-left: 4px solid #000; }
+            a { color: #000; text-decoration: underline; }
+            .primary-color { color: #000; }
+            .secondary-color { color: #000; }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <img src="file://{{ duo_group_logo_path }}" alt="Duo Group Logo" class="logo" />
+                <h1>Tax Depreciation Report</h1>
+                <p>Generated on {{ formatted_date }}</p>
+            </div>
+            
+            <h2>Property Information</h2>
+            <table>
+                <tr>
+                    <th>Property Type</th>
+                    <td>
+                    {% if report.property_type == "residential" %}
+                        Residential Property
+                    {% elif report.property_type == "commercial" %}
+                        Commercial Property
+                    {% elif report.property_type == "industrial" %}
+                        Industrial Property
+                    {% else %}
+                        {{ report.property_type }}
+                    {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <th>Purchase Price</th>
+                    <td><span class="highlight">${{ "{:,.2f}".format(report.purchase_price) }}</span></td>
+                </tr>
+                <tr>
+                    <th>Construction Date</th>
+                    <td>{{ report.construction_date }}</td>
+                </tr>
+                <tr>
+                    <th>Purchase Date</th>
+                    <td>{{ report.purchase_date }}</td>
+                </tr>
+            </table>
+            
+            <h2>Depreciation Summary</h2>
+            <div class="summary-box">
+                <table>
+                    <tr>
+                        <th>First Year Deduction</th>
+                        <td><span class="highlight">${{ "{:,.2f}".format(report.first_year_depreciation) }}</span></td>
+                    </tr>
+                    <tr>
+                        <th>First 5 Years</th>
+                        <td><span class="highlight">${{ "{:,.2f}".format(report.five_year_depreciation) }}</span></td>
+                    </tr>
+                    <tr>
+                        <th>Total Depreciable Amount</th>
+                        <td><span class="highlight">${{ "{:,.2f}".format(report.total_depreciable_amount) }}</span></td>
+                    </tr>
+                </table>
+            </div>
+            
+            <h2>Yearly Depreciation Schedule</h2>
+            <table>
+                <tr>
+                    <th>Year</th>
+                    <th>Diminishing Value ($)</th>
+                    <th>Prime Cost ($)</th>
+                    <th>Capital Works ($)</th>
+                    <th>Total ($)</th>
+                </tr>
+                {% for year in report.yearly_breakdown %}
+                <tr>
+                    <td>{{ year.year }}</td>
+                    <td>${{ "{:,.2f}".format(year.diminishing_value) }}</td>
+                    <td>${{ "{:,.2f}".format(year.prime_cost) }}</td>
+                    <td>${{ "{:,.2f}".format(year.capital_works) }}</td>
+                    <td><span class="highlight">${{ "{:,.2f}".format(year.total) }}</span></td>
+                </tr>
+                {% endfor %}
+            </table>
+            
+            <div class="footer">
+                <p>This report was generated using <span class="primary-color">Duo Tax's</span> Depreciation Calculator.</p>
+                <p>For professional advice, please contact us at <span class="secondary-color">info@duotax.com.au</span></p>
+                <p>&copy; {{ current_year }} <span class="primary-color">Duo Tax Depreciation</span>. All rights reserved.</p>
+            </div>
+        </div>
+    </body>
+    </html>
+    
